@@ -1,0 +1,60 @@
+<ngb-carousel *ngIf="promotions">
+    <ng-template ngbSlide *ngFor="let promotion of promotions" class="carousel-item">
+        <div class="picsum-img-wrapper">
+            <a [href]="promotion.url" target="_blank">
+                <img [src]="promotion.url" [alt]="promotion.title">
+            </a>
+        </div>
+        <div class="carousel-caption">
+            <h3>{{ promotion.title }}</h3>
+            <p>{{ promotion.description }}</p>
+        </div>
+    </ng-template>
+</ngb-carousel>
+
+<app-searcher-plan></app-searcher-plan>
+
+<div class="container mb-3" style="margin-top: 30px; border: 1px solid #ccc;">
+    <h1 class="mt-2"><b>Principales Planes</b></h1>
+    <div class="row">
+        <div *ngFor="let plan of planes; let first = first;" class="col-sm-12"
+            [class]="'col-lg' + (first ? '-12':'-3')">
+            <div *ngIf="first" class="row mb-3 py-3" style="border-bottom: 1px solid #ccc;">
+                <div class="col-lg-6">
+                    <img [src]="plan.image" [alt]="plan.title" width="100%">
+                </div>
+                <div class="col">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plan.title }}</h5>
+                        <ngb-rating [(rate)]="plan.rating" max="5" class="rating" readonly="true">
+                        </ngb-rating>
+                        <p class="card-text">{{ plan.description | slice:0:300 }}...</p>
+                        <h5>${{ plan.price |number }}</h5>
+                        <br>
+                        <a [routerLink]="['/plan', plan.id]" routerLinkActive="active"
+                            class="btn btn-primary btn-block">Ver plan</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3" *ngIf="!first">
+                <img class="card-img-top" [src]="plan.image" [alt]="plan.title">
+                <div class="card-body">
+                    <h5 class="card-title">{{ plan.title }}</h5>
+                    <ngb-rating [(rate)]="plan.rating" max="5" class="rating" readonly="true">
+                    </ngb-rating>
+                    <p class="card-text">{{ plan.description | slice:0:100 }}...</p>
+                    <h5>${{ plan.price |number }}</h5>
+                    <br>
+                    <a [routerLink]="['/plan', plan.id]" routerLinkActive="active" class="btn btn-primary btn-block">Ver
+                        plan</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container pb-3">
+        <div class="row justify-content-md-center">
+            <button class="col-sm-12 col-lg-2 btn btn-outline-primary btn-lg">Más planes > </button>
+        </div>
+    </div>
+</div>

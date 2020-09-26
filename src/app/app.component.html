@@ -1,49 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">{{ title }}</a>
-    
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Planes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Cotizador</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Acerca de</a>
-            </li>
-        </ul>
-        <!-- <span class="navbar-text">
-            Navbar text with an inline element
-        </span> -->
-        <a class="nav-link" href="#">Iniciar sesión</a>
-        <button type="button" class="btn btn-light"><a class="nav-link" href="#">Registrarse</a></button>        
-    </div>
-</nav>
-
-<div class="container" style="border: 1px solid #ccc; margin-top: 50px;">
-    <form style="margin: 10px;">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<div class="d-flex flex-column" style="height: -webkit-fill-available !important">
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+    <app-footer class="mt-auto"></app-footer>
 </div>
