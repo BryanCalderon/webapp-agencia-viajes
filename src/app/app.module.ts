@@ -13,12 +13,18 @@ import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { PlanModule } from './plan/plan.module';
+import { LoginComponent } from './login/login.component';
+import { PasswordComponent } from './password/password.component';
+import { RegistroComponent } from './registro/registro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearcherPlanComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    PasswordComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
