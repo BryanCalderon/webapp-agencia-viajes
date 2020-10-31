@@ -1,0 +1,23 @@
+<form class="m-2">
+    <div class="row">
+        <div class="col-12 col-sm-12 form-group">
+            <label>Plan turistico</label>
+            <input type="text" class="form-control" [(ngModel)]="model['plan']['title']" name="origen"
+                placeholder="plan" disabled />
+        </div>
+
+        <div class="col-12 col-sm-12">
+            <app-searcher label="Ciudad origen" [list]="ciudades" [(model)]="model" fieldSearch="name" key="ciudad">
+            </app-searcher>
+        </div>
+
+        <div class="col col-sm-12">
+            <app-datepicker [(model)]="model" fromDate="fromDate" toDate="toDate"></app-datepicker>
+        </div>
+
+        <div class="form-group col col-sm-12">
+            <label>Cantidad de personas</label>
+            <input type="number" class="form-control" name="cant-personas" [(ngModel)]="model.totalPersonas">
+        </div>
+    </div>
+</form>

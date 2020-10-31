@@ -7,3 +7,8 @@ body {
     color  : gold;
     outline: none;
 }
+
+
+:root {
+    --main-bg-color: rgb(2, 117, 216);
+}

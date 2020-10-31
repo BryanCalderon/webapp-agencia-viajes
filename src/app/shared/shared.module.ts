@@ -1,21 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppNavbarComponent } from './app-navbar/app-navbar.component';
-import { FooterComponent } from './footer/footer.component';
+import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SearcherComponent } from './components/searcher/searcher.component';
+import { CiudadService } from './services/ciudad/ciudad.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
 
 
 
 @NgModule({
   declarations: [
     AppNavbarComponent,
-    FooterComponent
+    FooterComponent,
+    SearcherComponent,
+    DatepickerComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbModule,
+    FormsModule,
   ],
   exports: [
     AppNavbarComponent,
-    FooterComponent
-  ]
+    FooterComponent,
+    SearcherComponent,
+    DatepickerComponent,
+  ],
+  providers: [CiudadService],
 })
 export class SharedModule { }

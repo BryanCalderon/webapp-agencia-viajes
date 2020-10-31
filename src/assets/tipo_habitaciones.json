@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "precio": 50000,
+        "capacidad": 12,
+        "tipoHabitacion": {
+            "id": 1,
+            "descripcion": "Habitación multiple"
+        }
+    },
+    {
+        "id": 2,
+        "precio": 90000,
+        "capacidad": 4,
+        "tipoHabitacion": {
+            "id": 2,
+            "descripcion": "Habitacion doble cama"
+        }
+    },
+    {
+        "id": 3,
+        "precio": 100000,
+        "capacidad": 2,
+        "tipoHabitacion": {
+            "id": 3,
+            "descripcion": "Habitación sencilla"
+        }
+    },
+    {
+        "id": 4,
+        "precio": 200000,
+        "capacidad": 2,
+        "tipoHabitacion": {
+            "id": 4,
+            "descripcion": "Habitación Premium"
+        }
+    }
+]

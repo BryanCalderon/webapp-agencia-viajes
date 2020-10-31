@@ -1,0 +1,76 @@
+ul {
+    padding   : 0;
+    margin    : 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.wizard>.steps .current-info,
+.wizard>.steps .number {
+    display: none;
+}
+
+#wizard {
+    min-height  : 834px;
+    background  : #fff;
+    margin-right: 60px;
+    padding     : 107px 75px 65px;
+}
+
+.steps {
+    margin-bottom: 30px;
+}
+
+.steps ul {
+    display : flex;
+    position: relative;
+}
+
+.steps ul li {
+    width: 27.16%;
+}
+
+.steps ul li:not(.last) {
+    margin-right: 10px;
+}
+
+.steps ul li a {
+    display      : inline-block;
+    width        : 100%;
+    height       : 7px;
+    background   : #e6e6e6;
+    border-radius: 3.5px;
+    cursor       : pointer;
+}
+
+.steps ul li.first a,
+.steps ul li.checked a {
+    background: var(--main-bg-color);
+    transition: all 0.5s ease;
+}
+
+.title-wizard {
+    font-size  : 22px;
+    color      : #333;
+    top        : -38px;
+    position   : absolute;
+    font-weight: bolder;
+}
+
+.card-wizard {
+    border       : 1px solid #CCC;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.card-wizard-actions {
+    border       : 1px solid #ccc;
+    border-radius: 0px 0px 5px 5px;
+    border-top   : 0;
+}

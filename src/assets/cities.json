@@ -1,0 +1,30 @@
+[
+    {
+        "id": 0,
+        "name": "Bogota"
+    },
+    {
+        "id": 1,
+        "name": "Cali"
+    },
+    {
+        "id": 2,
+        "name": "Medellin"
+    },
+    {
+        "id": 3,
+        "name": "Barranquilla"
+    },
+    {
+        "id": 4,
+        "name": "Cartagenda"
+    },
+    {
+        "id": 5,
+        "name": "Cucuta"
+    },
+    {
+        "id": 6,
+        "name": "Villavicencio"
+    }
+]

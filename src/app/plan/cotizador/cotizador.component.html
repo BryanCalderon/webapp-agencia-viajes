@@ -1,0 +1,36 @@
+<div id="wizard" class="wizard">
+    <div class="steps clearfix">
+        <ul role="tablist">
+            <h3 class="title-wizard">{{ titleWizard }}</h3>
+            <li *ngFor="let step of steps; let first = first; let last = last, let index = index" class="done"
+                [ngClass]="{'current': currentStep == index, 'first': first, 'last': last,'checked': currentStep >= index}">
+                <a (click)="changeStep($event)">
+                    <span class="current-info audible">current step: </span>
+                    <span class="number">{{ index }}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div [ngSwitch]="currentStep" class="p-5 card-wizard">
+        <form class="m-2">
+            <app-step1 *ngSwitchCase="0" [(model)]="model"></app-step1>
+            <app-step2 *ngSwitchCase="1" [(model)]="model"></app-step2>
+            <app-step3 *ngSwitchCase="2" [(model)]="model"></app-step3>
+            <app-step4 *ngSwitchCase="3" [(model)]="model" [steps]="steps"></app-step4>
+        </form>
+    </div>
+    <div class="row mx-0 p-3 card-wizard-actions">
+        <button *ngIf="currentStep > 0" class="btn btn-outline-primary mr-auto" (click)="prevStep()">Anterior</button>
+        <button *ngIf="currentStep < 3" class="btn btn-outline-primary ml-auto" (click)="nextStep()">Siguiente</button>
+    </div>
+
+    <div class="card-wizard row mx-0 p-3 mt-5">
+        <div class="mr-auto">
+            <span>Total</span>
+        </div>
+
+        <button class="btn btn-success ml-auto" (click)="comprar()" [disabled]="currentStep != 3">Comprar</button>
+    </div>
+
+</div>

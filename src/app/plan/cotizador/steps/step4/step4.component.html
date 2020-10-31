@@ -1,0 +1,8 @@
+<div>
+    <ngb-accordion>
+        <ngb-panel *ngFor="let step of steps; let last = last" [title]="step" [hidden]="last">
+            <ng-template ngbPanelContent>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+</div>
