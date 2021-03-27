@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UtilService } from 'src/app/utils/util.service';
 
 @Component({
   selector: 'app-step4',
@@ -8,8 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class Step4Component implements OnInit {
   @Input() model;
   @Input() steps;
-  
-  constructor() { }
+
+  constructor(public utilService: UtilService) { }
 
   ngOnInit(): void {
   }

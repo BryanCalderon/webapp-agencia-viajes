@@ -15,10 +15,7 @@ export class DatepickerComponent implements OnInit {
   constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
   }
 
-
   ngOnInit(): void {
-    console.log(this.model);
-
   }
 
   onDateSelection(date: NgbDate) {
@@ -31,9 +28,6 @@ export class DatepickerComponent implements OnInit {
       this.model[this.toDate] = null;
       this.model[this.fromDate] = date;
     }
-
-    console.log("onDateSelection >> ", this.model[this.fromDate], this.model[this.toDate]);
-
   }
 
   isHovered(date: NgbDate) {

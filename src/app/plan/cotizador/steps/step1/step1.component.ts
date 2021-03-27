@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Ciudad, CiudadService } from 'src/app/shared/services/ciudad/ciudad.service';
+import { Ciudad } from 'src/app/services/ciudad/ciudad.service';
+import { Departamento, DepartamentoService } from 'src/app/services/departamento/departamento.service';
 
 @Component({
   selector: 'app-step1',
@@ -7,17 +8,25 @@ import { Ciudad, CiudadService } from 'src/app/shared/services/ciudad/ciudad.ser
   styleUrls: ['./step1.component.css']
 })
 export class Step1Component implements OnInit {
-  @Input() model;
+  @Input() model: any;
   ciudades: Ciudad[];
+  departamentos: Departamento[];
 
-  constructor(private ciudadService: CiudadService) { }
+  constructor(private departamentoService: DepartamentoService) { }
 
   ngOnInit() {
-    this.getCities();
+    this.getDepartamentos();
   }
 
-  getCities() {
-    this.ciudadService.getCities().subscribe(data => {
+  getDepartamentos() {
+    this.departamentoService.get().subscribe(data => {
+      this.departamentos = data;
+    });
+  }
+
+  getCities(event: any) {
+    let deparId = event.item['id'];
+    this.departamentoService.getCities(deparId).subscribe(data => {
       this.ciudades = data;
     });
   }

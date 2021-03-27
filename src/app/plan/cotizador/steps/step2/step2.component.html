@@ -3,7 +3,9 @@
         <label>Hotel</label>
         <select [(ngModel)]="model['hotel']" class="custom-select" (change)="onChangeHotel()">
             <option selected>Sin hotel...</option>
-            <option *ngFor="let hotel of hoteles" [value]="hotel">{{ hotel.name }}</option>
+            <option *ngFor="let hotel of hoteles" [ngValue]="hotel">
+                {{ hotel.nombre }}
+            </option>
         </select>
     </div>
 
@@ -19,9 +21,9 @@
 
             <div class="form-check" *ngFor="let tipo of tipoHabitaciones">
                 <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" [value]="tipo"
-                    [(ngModel)]="model.tipoHabitacion">
+                    [(ngModel)]="model.tipoHabitacion" (change)="selectedItem()">
                 <label class="form-check-label">
-                    {{ tipo.tipoHabitacion.descripcion }}
+                    {{ tipo.tipo_habitacion.descripcion }}
                     ({{ tipo.precio == 0 ? 'Gratis!' : tipo.precio | number }})
                 </label>
             </div>
@@ -40,8 +42,7 @@
             </div>
 
             <div class="form-check" *ngFor="let servicio of servicios">
-                <input class="form-check-input" type="checkbox" [value]="servicio.id"
-                    (change)="changeServicios($event)">
+                <input class="form-check-input" type="checkbox" [value]="servicio" (change)="changeServicios(servicio)">
                 <label class="form-check-label">
                     {{ servicio.servicio.descripcion + " "+ (servicio.precio == 0 ? 'Gratis!' : servicio.precio | number)}}
                 </label>

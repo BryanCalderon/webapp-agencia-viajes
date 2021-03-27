@@ -15,7 +15,7 @@
     <div [ngSwitch]="currentStep" class="p-5 card-wizard">
         <form class="m-2">
             <app-step1 *ngSwitchCase="0" [(model)]="model"></app-step1>
-            <app-step2 *ngSwitchCase="1" [(model)]="model"></app-step2>
+            <app-step2 *ngSwitchCase="1" [(model)]="model" (onChangeEvent)="getTotalCost()"></app-step2>
             <app-step3 *ngSwitchCase="2" [(model)]="model"></app-step3>
             <app-step4 *ngSwitchCase="3" [(model)]="model" [steps]="steps"></app-step4>
         </form>
@@ -28,6 +28,7 @@
     <div class="card-wizard row mx-0 p-3 mt-5">
         <div class="mr-auto">
             <span>Total</span>
+            <strong class="ml-2">${{ cost | number }}</strong>
         </div>
 
         <button class="btn btn-success ml-auto" (click)="comprar()" [disabled]="currentStep != 3">Comprar</button>

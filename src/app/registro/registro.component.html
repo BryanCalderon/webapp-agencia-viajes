@@ -1,77 +1,108 @@
-<!-- ENCABEZADO -->
-<br>
-<div class="container">
-    <div class="row align-items-start">
-        <div class="col">
-            <button type="button" class="btn btn-light btn-lg"><h2><b>Agenda tu viaje</b></h2></button>
-        </div>
-    </div>
-</div><br><br>
+<div class="container-login">
+    <div>
+        <form [formGroup]="loginForm" class="form-signin">
+            <img class="mb-4" src="../../assets/logo.png" alt="" width="100%" height="100%">
 
-  <!-- REGISTRO -->
-  <div class="container" style="margin-bottom: 50px;">
-    <div class="row justify-content-center">
-        <div class="col-sm-6">
-        <div class="card text-center">
-            <div class="card-body">
-                <h3 class="card-title">Registrarse</h3>
-            </div><br>
-            <form>
-                <div class="form-group">
-                    <div class="row justify-content-center">
-                        <div class="col-8">
-                            <label for="validationDefault01">Nombre completo</label>
-                            <input type="text" class="form-control" id="validationDefault01" aria-describedby="emailHelp" required>
-                        </div>
-                    </div>
-                </div><br>
-                <div class="form-group">
-                  <div class="row justify-content-center">
-                      <div class="col-8">
-                          <label for="validationDefault02">Numero de identificación</label>
-                          <input type="number" class="form-control" id="validationDefault02" required>
-                      </div>
-                  </div>    
-              </div><br>
-              <div class="form-group">
-                <div class="row justify-content-center">
-                    <div class="col-8">
-                        <label for="validationDefault03">Email</label>
-                        <input type="email" class="form-control" id="validationDefault03" required>
-                    </div>
-                </div>    
-              </div><br>
-              <div class="form-group">
-                <div class="row justify-content-center">
-                    <div class="col-8">
-                        <label for="validationDefault04">Dirección</label>
-                        <input type="text" class="form-control" id="validationDefault04" required>
-                    </div>
-                </div>    
-              </div><br>
-              <div class="form-group">
-                <div class="row justify-content-center">
-                    <div class="col-8">
-                        <label for="validationDefault05">Telefono</label>
-                        <input type="number" class="form-control" id="validationDefault05" required>
-                    </div>
-                </div>    
-              </div><br>
-                <div class="form-group">
-                    <div class="row justify-content-center">
-                        <div class="col-8">
-                            <label for="validationDefault02">Password</label>
-                            <input type="password" class="form-control" id="validationDefault02" required>
-                        </div>
-                    </div>    
-                </div><br>
-                <div class="row">
-                    <div class="col">
-                        <a routerLink="/login" class="btn btn-primary col-lg-8">Registrarse</a><br>
+            <ngb-alert class="row" *ngIf="errorMessage" type="danger" (close)="errorMessage = ''">
+                {{ errorMessage }}
+            </ngb-alert>
+
+            <div class="form-group">
+                <label for="nombres">Nombre*</label>
+                <input type="text" id="nombres" placeholder="Nombre" class="form-control" aria-describedby="nombresHelp"
+                    formControlName="nombres" />
+                <small id="nombresHelp"
+                    *ngIf="loginForm.controls['nombres'].touched && loginForm.controls['nombres'].errors?.required">
+                    El nombre es obligatorio.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="apellidos">Apellido*</label>
+                <input type="text" id="apellidos" placeholder="Apellido" class="form-control"
+                    aria-describedby="apellidosHelp" formControlName="apellidos" />
+                <small id="apellidosHelp"
+                    *ngIf="loginForm.controls['apellidos'].touched && loginForm.controls['apellidos'].errors?.required">
+                    El nombre es obligatorio.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="identificacion">Numero de identificación</label>
+                <input type="text" id="identificacion" placeholder="Numero de identificación" class="form-control"
+                    formControlName="identificacion" aria-describedby="identificacionHelp" />
+                <small id="identificacionHelp" class="form-text text-muted"
+                    *ngIf="loginForm.controls['identificacion'].touched && loginForm.controls['identificacion'].errors?.required">
+                    El numero de identificación es obligatorio.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" id="telefono" placeholder="Teléfono" class="form-control"
+                    formControlName="telefono" aria-describedby="telefonoHelp" />
+                <small id="telefonoHelp" class="form-text text-muted"
+                    *ngIf="loginForm.controls['telefono'].touched && loginForm.controls['telefono'].errors?.required">
+                    El Teléfono es obligatorio.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                <div class="input-group">
+                    <input id="fecha_nacimiento" class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="fecha_nacimiento" ngbDatepicker
+                        #d="ngbDatepicker"  aria-describedby="fecha_nacimientoHelp" [minDate]="minDate">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                            <i class="fa fa-calendar"></i>
+                        </button>
                     </div>
                 </div>
-            </form><br><br>
+                <small id="fecha_nacimientoHelp" class="form-text text-muted"
+                    *ngIf="loginForm.controls['fecha_nacimiento'].touched && loginForm.controls['fecha_nacimiento'].errors?.required">
+                    El Fecha de nacimiento es obligatorio.
+                </small>
             </div>
-        </div>
-    </div><br>
-</div><br>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" placeholder="Correo electrónico" class="form-control"
+                    formControlName="email" aria-describedby="emailHelp" />
+                <small id="emailHelp" class="form-text text-muted"
+                    *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors?.required">
+                    El correo electrónico es obligatorio.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>Contraseña*</label>
+                <input type="password" placeholder="Contraseña" class="form-control" formControlName="password" />
+                <small
+                    *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.required">
+                    La contraseña es obligatoria.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>Confirmar contraseña*</label>
+                <input type="password" placeholder="Confirmar contraseña" class="form-control"
+                    formControlName="confirmPassword" />
+                <small
+                    *ngIf="loginForm.controls['confirmPassword'].touched && loginForm.controls['confirmPassword'].errors?.required">
+                    La contraseña es obligatoria.
+                </small>
+            </div>
+
+            <button class="btn btn-success btn-block mt-4" [disabled]="loginForm.invalid" (click)="createUser()">
+                Registrarse
+            </button>
+
+            <div class="mt-2 text-center">
+                <button [routerLink]="['/login']" routerLinkActive="active" class="btn btn-link">
+                    <small>¿Ya tienes cuenta?</small>
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

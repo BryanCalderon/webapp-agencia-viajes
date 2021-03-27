@@ -17,15 +17,14 @@ export class DetailPlanComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(p => {
-      console.log(p['params']);
       this.id = p['params']['id'];
       this.getPlan(this.id);
     })
   }
 
   getPlan(id: Number) {
-    this.planService.get().subscribe(data => {
-      this.plan = data.find(p => p.id == id)
+    this.planService.getById(id).subscribe(data => {
+      this.plan = data;
     });
   }
 }

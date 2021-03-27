@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearcherComponent } from './components/searcher/searcher.component';
-import { CiudadService } from './services/ciudad/ciudad.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { ToastComponent } from './toast/toast.component';
 
 
 
@@ -16,18 +17,21 @@ import { DatepickerComponent } from './components/datepicker/datepicker.componen
     FooterComponent,
     SearcherComponent,
     DatepickerComponent,
+    ToastComponent
   ],
   imports: [
     CommonModule,
     NgbModule,
     FormsModule,
+    AppRoutingModule,
   ],
   exports: [
     AppNavbarComponent,
     FooterComponent,
     SearcherComponent,
     DatepickerComponent,
+    ToastComponent
   ],
-  providers: [CiudadService],
+  providers: [],
 })
 export class SharedModule { }

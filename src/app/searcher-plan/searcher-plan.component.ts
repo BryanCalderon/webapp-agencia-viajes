@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Ciudad, CiudadService } from '../shared/services/ciudad/ciudad.service';
+import { Ciudad, CiudadService } from '../services/ciudad/ciudad.service';
 
 type Model = { origen: String, destino: string, select: Number };
 
@@ -21,7 +21,7 @@ export class SearcherPlanComponent implements OnInit {
   }
 
   getCities() {
-    this.ciudadService.getCities().subscribe(data => {
+    this.ciudadService.get().subscribe(data => {
       this.ciudades = data;
     });
   }

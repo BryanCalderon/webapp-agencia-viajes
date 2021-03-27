@@ -1,13 +1,13 @@
 <ngb-carousel *ngIf="promotions">
     <ng-template ngbSlide *ngFor="let promotion of promotions" class="carousel-item">
         <div class="picsum-img-wrapper">
-            <a [href]="promotion.url" target="_blank">
-                <img [src]="promotion.url" [alt]="promotion.title">
+            <a [routerLink]="['/plan', promotion.plan.id]" target="_blank">
+                <img [src]="promotion.imagen" [alt]="promotion.titulo">
             </a>
         </div>
         <div class="carousel-caption">
-            <h3>{{ promotion.title }}</h3>
-            <p>{{ promotion.description }}</p>
+            <h3>{{ promotion.titulo }}</h3>
+            <p>{{ promotion.descripcion }}</p>
         </div>
     </ng-template>
 </ngb-carousel>
@@ -21,15 +21,15 @@
             [class]="'col-lg' + (first ? '-12':'-3')">
             <div *ngIf="first" class="row mb-3 py-3" style="border-bottom: 1px solid #ccc;">
                 <div class="col-lg-6">
-                    <img [src]="plan.image" [alt]="plan.title" width="100%">
+                    <img [src]="plan.imagen" [alt]="plan.titulo" width="100%">
                 </div>
                 <div class="col">
                     <div class="card-body">
-                        <h5 class="card-title">{{ plan.title }}</h5>
+                        <h5 class="card-title">{{ plan.titulo }}</h5>
                         <ngb-rating [(rate)]="plan.rating" max="5" class="rating" readonly="true">
                         </ngb-rating>
-                        <p class="card-text">{{ plan.description | slice:0:300 }}...</p>
-                        <h5>${{ plan.price |number }}</h5>
+                        <p class="card-text">{{ plan.descripcion | slice:0:300 }}...</p>
+                        <h5>${{ plan.precio |number }}</h5>
                         <br>
                         <a [routerLink]="['/plan', plan.id]" routerLinkActive="active"
                             class="btn btn-primary btn-block">Ver plan</a>
@@ -38,21 +38,25 @@
             </div>
 
             <div class="card mb-3" *ngIf="!first">
-                <img class="card-img-top" [src]="plan.image" [alt]="plan.title">
+                <img class="card-img-top" [src]="plan.imagen" [alt]="plan.titulo">
                 <div class="card-body">
-                    <h5 class="card-title">{{ plan.title }}</h5>
+                    <h5 class="card-title">{{ plan.titulo }}</h5>
                     <ngb-rating [(rate)]="plan.rating" max="5" class="rating" readonly="true">
                     </ngb-rating>
-                    <p class="card-text">{{ plan.description | slice:0:100 }}...</p>
-                    <h5>${{ plan.price |number }}</h5>
+                    <p class="card-text">{{ plan.descripcion | slice:0:100 }}...</p>
+                    <h5>${{ plan.precio |number }}</h5>
                     <br>
                     <a [routerLink]="['/plan', plan.id]" routerLinkActive="active" class="btn btn-primary btn-block">Ver
                         plan</a>
                 </div>
             </div>
         </div>
+
+        <div *ngIf="!planes || planes.length == 0" class="alert alert-primary col m-3" role="alert">
+            No se encontraron planes disponibles!
+        </div>
     </div>
-    <div class="container pb-3">
+    <div class="container pb-3" *ngIf="planes">
         <div class="row justify-content-md-center">
             <button class="col-sm-12 col-lg-2 btn btn-outline-primary btn-lg">Más planes > </button>
         </div>

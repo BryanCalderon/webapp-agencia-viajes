@@ -23,7 +23,12 @@
         <a class="nav-link" href="#">Acerca de</a>
       </li>
     </ul>
-    <a class="nav-link" href="#">Iniciar sesión</a>
-    <a class="btn btn-outline-light" href="#">Registrarse</a>
+
+    <div *ngIf="userName">
+      <p class="m-0 d-inline" style="color: #FFF;">{{ userName }}</p>
+      <button class="btn btn-link" (click)="logout()">Cerrar sesión</button>
+    </div>
+
+    <a *ngIf="!userName && !hideLoginbutton" class="btn btn-link" [routerLink]="['/login']">Iniciar sesión</a>
   </div>
 </nav>

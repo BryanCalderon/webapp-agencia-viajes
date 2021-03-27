@@ -12,8 +12,8 @@ export class SearcherComponent implements OnInit {
   @Input() list: any[];
   @Input() fieldSearch: string;
   @Input() label: String;
-  @Input() model;
-  @Input() key;
+  @Input() model: any;
+  @Input() key: string;
   @Output() onChangeEvent = new EventEmitter<string>();
   formatterSearch = (item: any) => item[this.fieldSearch];
 
@@ -22,10 +22,18 @@ export class SearcherComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  search = (text$: Observable<string>) => text$.pipe(
-    debounceTime(200),
-    distinctUntilChanged(),
-    filter(term => term.length >= 2),
-    map(term => this.list.filter(item => new RegExp(term, 'mi').test(item[this.fieldSearch])).slice(0, 10))
-  )
+  search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      filter(term => term.length >= 2),
+      map(term => this.list.filter(item => new RegExp(term, 'mi')
+        .test(item[this.fieldSearch]))
+        .slice(0, 10))
+    )
+
+  selectedItem(item) {
+    this.model[this.key] = item.item;
+    this.onChangeEvent.emit(item);
+  }
 }

@@ -2,12 +2,18 @@
     <div class="row">
         <div class="col-12 col-sm-12 form-group">
             <label>Plan turistico</label>
-            <input type="text" class="form-control" [(ngModel)]="model['plan']['title']" name="origen"
+            <input type="text" class="form-control" [(ngModel)]="model['plan']['titulo']" name="origen"
                 placeholder="plan" disabled />
         </div>
 
         <div class="col-12 col-sm-12">
-            <app-searcher label="Ciudad origen" [list]="ciudades" [(model)]="model" fieldSearch="name" key="ciudad">
+            <app-searcher label="Departamento origen" [list]="departamentos" [(model)]="model" fieldSearch="nombre"
+                key="departamento" (onChangeEvent)="getCities($event)">
+            </app-searcher>
+        </div>
+
+        <div class="col-12 col-sm-12">
+            <app-searcher label="Ciudad origen" [list]="ciudades" [(model)]="model" fieldSearch="nombre" key="ciudad">
             </app-searcher>
         </div>
 

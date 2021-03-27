@@ -1,8 +1,6 @@
-
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Plan, PlanService } from '../plan/service/plan.service';
-
-interface Promotions { id: Number, url: String, title: String, description: String };
+import { Promocion, PromocionService } from '../services/promocion/promocion.service';
 
 
 @Component({
@@ -14,38 +12,20 @@ export class HomeComponent implements OnInit {
 
   innerWidth: number;
   innerHeight: number;
-  promotions: Promotions[];
+  promotions: Promocion[];
   planes: Plan[];
 
-  constructor(private planService: PlanService) { }
+  constructor(private planService: PlanService, private promocionService: PromocionService) { }
 
   ngOnInit() {
-    this.getSizeScreen();
-    this.getPromotions(this.innerWidth, this.innerHeight);
+    this.getPromotions();
     this.getPlanes();
   }
 
-  getSizeScreen() {
-    this.innerWidth = window.innerWidth;
-    this.innerHeight = window.innerHeight / 2;
-  }
-
-
-  getPromotions(width: any, height: any) {
-    this.promotions = [944, 1011, 984, 800, 740].map(n => {
-      return {
-        id: n,
-        url: `https://picsum.photos/id/${n}/${width}/${height}`,
-        title: `Random ${n} slide`,
-        description: `Nulla ${n} vitae elit libero, a pharetra augue mollis interdum.`
-      }
-    });
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.getSizeScreen();
-    this.getPromotions(this.innerWidth, this.innerHeight);
+  getPromotions() {
+    this.promocionService.get().subscribe(result => {
+      this.promotions = result;
+    })
   }
 
   getPlanes() {

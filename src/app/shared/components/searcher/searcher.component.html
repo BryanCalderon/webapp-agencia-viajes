@@ -1,5 +1,10 @@
 <div class="form-group">
     <label>{{ label }}</label>
-    <input type="text" class="form-control" [(ngModel)]="model[key]" [ngbTypeahead]="search"
-        [placeholder]="label" [inputFormatter]="formatterSearch" [resultFormatter]="formatterSearch"/>
+    <input type="text" class="form-control" 
+        [(ngModel)]="model[key]"
+        [ngbTypeahead]="search" 
+        [placeholder]="label"
+        [inputFormatter]="formatterSearch" 
+        [resultFormatter]="formatterSearch" 
+        (selectItem)="selectedItem($event)" />
 </div>

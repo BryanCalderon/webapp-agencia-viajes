@@ -1,7 +1,7 @@
-import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { HotelService } from 'src/app/shared/services/hotel/hotel.service';
-import { ServiciosHotelService } from 'src/app/shared/services/serviciosHotel/servicios-hotel.service';
-import { TipoHabitacionService } from 'src/app/shared/services/tipoHabitacion/tipo-habitacion.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { HotelService } from 'src/app/services/hotel/hotel.service';
+import { ServiciosHotelService } from 'src/app/services/serviciosHotel/servicios-hotel.service';
+import { TipoHabitacionService } from 'src/app/services/tipoHabitacion/tipo-habitacion.service';
 
 @Component({
   selector: 'app-step2',
@@ -11,6 +11,7 @@ import { TipoHabitacionService } from 'src/app/shared/services/tipoHabitacion/ti
 export class Step2Component implements OnInit {
 
   @Input() model;
+  @Output() onChangeEvent = new EventEmitter<string>();
   hoteles: [] = [];
   servicios: [] = [];
   tipoHabitaciones: [] = [];
@@ -22,46 +23,46 @@ export class Step2Component implements OnInit {
   }
 
   getHotels() {
-    this.hotelService.get().subscribe(data => {
+    this.hotelService.getByCity(this.model['ciudad']['id']).subscribe(data => {
       this.hoteles = data;
     })
   }
 
   onChangeHotel() {
+    console.log(this.model.hotel);
     this.getServiciosHotel();
     this.getTipoHabitaciones();
   }
 
+  selectedItem() {
+    this.onChangeEvent.emit();
+  }
+
   getServiciosHotel() {
-    this.servicioHotelService.get().subscribe(data => {
+    this.servicioHotelService.getByhotel(this.model['hotel']['id']).subscribe(data => {
       this.servicios = data;
     })
   }
 
   getTipoHabitaciones() {
-    this.tipoHabitacionService.get().subscribe(data => {
+    this.tipoHabitacionService.getByhotel(this.model['hotel']['id']).subscribe(data => {
       this.tipoHabitaciones = data;
     })
   }
 
-
-  changeServicios(event) {
+  changeServicios(servicio) {
     if (!this.model["servicios"]) {
       this.model.servicios = [];
     }
 
-    if (event.target.checked) {
-      this.model.servicios.push(event.target.value);
-    } else {
-      let i: number = 0;
-      this.model.servicios.forEach((item) => {
-        if (item == event.target.value) {
-          this.model.servicios.splice(i, 1);
-          return;
-        }
-        i++;
-      });
-    }
-  }
+    let index = this.model.servicios.indexOf(servicio);
 
+    if (index > -1) {
+      this.model.servicios.splice(index, 1);
+    } else {
+      this.model.servicios.push(servicio);
+    }
+
+    this.selectedItem();
+  }
 }
