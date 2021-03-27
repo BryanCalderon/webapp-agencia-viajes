@@ -10,6 +10,8 @@ import { PlanService } from './service/plan.service';
 import { PlanRoutingModule } from './plan-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DetailPlanComponent } from './detail-plan/detail-plan.component';
+import { CotizadorModule } from './cotizador/cotizador.module';
 
 @NgModule({
     imports: [
@@ -20,10 +22,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         SharedModule,
         StoreModule.forFeature('planes', reducer),
         EffectsModule.forRoot([PlanEffect]),
-        NgbModule
+        NgbModule,
+        CotizadorModule
     ],
     providers: [PlanService],
-    declarations: [PlanComponent],
+    declarations: [PlanComponent, DetailPlanComponent],
     exports: [PlanComponent]
 })
 

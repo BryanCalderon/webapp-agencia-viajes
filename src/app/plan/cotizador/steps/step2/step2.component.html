@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="form-group col-12">
+        <label>Hotel</label>
+        <select [(ngModel)]="model['hotel']" class="custom-select" (change)="onChangeHotel()">
+            <option selected>Sin hotel...</option>
+            <option *ngFor="let hotel of hoteles" [ngValue]="hotel">
+                {{ hotel.nombre }}
+            </option>
+        </select>
+    </div>
+
+    <div class="form-group col-12">
+        <legend class="col-form-label pt-0">Tipo de habitación</legend>
+        <div class="col-sm-10" name="tipo">
+            <div class="form-check" *ngIf="tipoHabitaciones.length == 0">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" [value]="" disabled>
+                <label class="form-check-label">
+                    No hay tipos de habitación
+                </label>
+            </div>
+
+            <div class="form-check" *ngFor="let tipo of tipoHabitaciones">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" [value]="tipo"
+                    [(ngModel)]="model.tipoHabitacion" (change)="selectedItem()">
+                <label class="form-check-label">
+                    {{ tipo.tipo_habitacion.descripcion }}
+                    ({{ tipo.precio == 0 ? 'Gratis!' : tipo.precio | number }})
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group col-12">
+        <legend class="col-form-label pt-0">Servicios</legend>
+
+        <div class="pl-3">
+            <div class="form-check" *ngIf="servicios.length == 0">
+                <input class="form-check-input" type="checkbox" [value]="" disabled>
+                <label class="form-check-label">
+                    No hay servicios disponibles
+                </label>
+            </div>
+
+            <div class="form-check" *ngFor="let servicio of servicios">
+                <input class="form-check-input" type="checkbox" [value]="servicio" (change)="changeServicios(servicio)">
+                <label class="form-check-label">
+                    {{ servicio.servicio.descripcion + " "+ (servicio.precio == 0 ? 'Gratis!' : servicio.precio | number)}}
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 const routes = {
     plan: (c: PlanContext) => `/planes/${c.id}`,
@@ -14,11 +15,13 @@ export interface PlanContext {
 
 export interface Plan {
     id: Number,
-    image: String,
-    title: String,
-    description: String,
+    imagen: String,
+    titulo: String,
+    descripcion: String,
     rating: number,
-    price: Number
+    fecha_ida: Date,
+    fecha_regreso: Date,
+    precio: Number
 };
 
 @Injectable({
@@ -30,22 +33,18 @@ export class PlanService {
     create(Plan: Plan): Observable<Plan> {
         return this.http.post<Plan>(routes.planes(), Plan).pipe(
             tap((Plan: Plan) =>
-                this.log(`added contact w/ id=${Plan.title}`)
+                this.log(`added contact w/ id=${Plan.titulo}`)
             ),
             catchError(this.handleError<Plan>('create'))
         );
     }
 
-    get(): Observable<Plan[]> {
-        return this.getJSON();
+    get(): Observable<any> {
+        return this.http.get<any>(environment.domain + `planes/`);
     }
 
-    getById(id: Number): Plan {
-        let result: Plan
-        this.getJSON().subscribe((data: Plan[]) => {
-            result = data.find(p => p.id === id)
-        });
-        return result;
+    getById(id: Number): any {
+        return this.http.get<any>(environment.domain + `planes/${id}/`);
     }
 
     /**

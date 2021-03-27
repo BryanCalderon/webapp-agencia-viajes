@@ -1,0 +1,26 @@
+[
+    {
+        "id": 0,
+        "name": "Hilton's Hotel"
+    },
+    {
+        "id": 1,
+        "name": "Spiwak"
+    },
+    {
+        "id": 2,
+        "name": "Las Victorias"
+    },
+    {
+        "id": 3,
+        "name": "Hotel Barranquilla"
+    },
+    {
+        "id": 4,
+        "name": "Hotel Cañaveralejo"
+    },
+    {
+        "id": 5,
+        "name": "Hotel Nordico"
+    }
+]

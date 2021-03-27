@@ -1,0 +1,138 @@
+<div>
+    <ngb-accordion>
+        <ng-container *ngFor="let step of steps; let last = last; let i = index">
+            <ngb-panel [title]="step" *ngIf="!last">
+                <ng-template ngbPanelContent>
+                    <div *ngIf="i == 0">
+                        <div class="row">
+                            <div class="col">
+                                <strong>Plan:</strong>
+                            </div>
+                            <div class="col">
+                                {{ model.plan.titulo }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <strong>Ciudad Origen:</strong>
+                            </div>
+                            <div class="col">
+                                {{ model.ciudad.nombre }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <strong>Fecha Salida:</strong>
+                            </div>
+                            <div class="col">
+                                {{ utilService.convertToDate(model.fromDate) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <strong>Fecha regreso:</strong>
+                            </div>
+                            <div class="col">
+                                {{ utilService.convertToDate(model.toDate)  }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <strong>Cantidad de personas:</strong>
+                            </div>
+                            <div class="col">
+                                {{ model.totalPersonas }}
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="i == 1">
+                        <div class="row">
+                            <div class="col">
+                                <strong>Hotel:</strong>
+                            </div>
+                            <div class="col">
+                                {{ model.hotel ? model.hotel.nombre : "Sin hotel" }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <strong>Tipo de habitación:</strong>
+                            </div>
+                            <div class="col">
+                                {{ model.tipoHabitacion ? model.tipoHabitacion.tipo_habitacion.descripcion : "Sin habitación" }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col align-self-center">
+                                <strong>Servicios adicionales:</strong>
+                            </div>
+                            <div class="col">
+                                <ul *ngIf="model.servicios">
+                                    <li *ngFor="let servicio of model.servicios">
+                                        {{ servicio.servicio.descripcion }}
+                                    </li>
+                                </ul>
+                                <span *ngIf="!model.servicios">Sin servicios</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="i == 2">
+                        <div *ngIf="model.pasajeros">
+                            <div *ngFor="let user of model.pasajeros" class="mb-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Nombre:</strong>
+                                    </div>
+                                    <div class="col">
+                                        {{ user.nombres }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Apellidos:</strong>
+                                    </div>
+                                    <div class="col">
+                                        {{ user.apellidos }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Tipo de identificación:</strong>
+                                    </div>
+                                    <div class="col">
+                                        {{ user.tipoDocumento.descripcion }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Numero de identificación:</strong>
+                                    </div>
+                                    <div class="col">
+                                        {{ user.identificacion }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Correo electronico:</strong>
+                                    </div>
+                                    <div class="col">
+                                        {{ user.email }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Fecha de nacimiento:</strong>
+                                    </div>
+                                    <div class="col">
+                                        {{ utilService.convertToDate(user.fecha_nacimiento) }}
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </ng-container>
+    </ngb-accordion>
+</div>

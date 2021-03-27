@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "precio": 20000,
+        "servicio": {
+            "id": 1,
+            "descripcion": "Almuerzo"
+        }
+    },
+    {
+        "id": 2,
+        "precio": 15000,
+        "servicio": {
+            "id": 2,
+            "descripcion": "Desayuno"
+        }
+    },
+    {
+        "id": 3,
+        "precio": 0,
+        "servicio": {
+            "id": 3,
+            "descripcion": "Bar abierto"
+        }
+    },
+    {
+        "id": 4,
+        "precio": 5000,
+        "servicio": {
+            "id": 4,
+            "descripcion": "Discoteca"
+        }
+    },
+    {
+        "id": 5,
+        "precio": 10000,
+        "servicio": {
+            "id": 5,
+            "descripcion": "Turco"
+        }
+    }
+]

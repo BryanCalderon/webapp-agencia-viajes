@@ -1,47 +1,62 @@
-<!-- ENCABEZADO -->
-<br>
-<div class="container">
-    <div class="row align-items-start">
-        <div class="col">
-            <button type="button" class="btn btn-light btn-lg"><h2><b>Agenda tu viaje</b></h2></button>
-        </div>
-    </div>
-</div><br><br>
+<div class="container-login">
+    <div>
+        <form [formGroup]="loginForm" class="form-signin text-center">
+            <img class="mb-4" src="../../assets/logo.png" alt="" width="100%" height="100%">
 
-<!-- INICIO DE SESION -->
-<div class="container" style="margin-bottom: 50px;">
-    <div class="row justify-content-center">
-        <div class="col-sm-6">
-        <div class="card text-center">
-            <div class="card-body">
-                <h3 class="card-title">Iniciar sesión</h3>
-            </div><br>
-            <form>
-                <div class="form-group">
-                    <div class="row justify-content-center">
-                        <div class="col-8">
-                            <label for="validationDefault01">Email</label>
-                            <input type="email" class="form-control" id="validationDefault01" aria-describedby="emailHelp" required>
-                        </div>
+            <ngb-alert class="row" *ngIf="errorMessage" type="danger" (close)="errorMessage = ''">
+                {{ errorMessage }}
+            </ngb-alert>
+
+            <div class="form-group">
+                <!-- <label for="title">Email*</label> -->
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend">
+                            <i class="fa fa-user"></i>
+                        </span>
                     </div>
-                </div><br>
-                <div class="form-group">
-                    <div class="row justify-content-center">
-                        <div class="col-8">
-                            <label for="validationDefault02">Password</label>
-                            <input type="password" class="form-control" id="validationDefault02" required>
-                        </div>
-                    </div>    
-                </div><br>
-                <div class="row">
-                    <div class="col">
-                        <a href="#" class="btn btn-primary col-lg-8" type="submit">Iniciar Sesión</a><br>
-                        <p class="margin medium-small"><a routerLink="/password">Forgot password?</a></p><br>
-                        <a routerLink="/registro" class="btn btn-primary col-lg-8">Registrarse</a><br>
-                    </div>
+                    <input type="text" id="Email" placeholder="Email" class="form-control" formControlName="email" />
                 </div>
-            </form><br><br>
+                <span *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors?.required"
+                    style="color:Red;">
+                    Email is required.
+                </span>
             </div>
-        </div>
-    </div><br>
-</div><br>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend">
+                            <i class="fa fa-key"></i>
+                        </span>
+                    </div>
+                    <input type="password" placeholder="Password" class="form-control" formControlName="password" />
+                </div>
+                <span *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.required"
+                    style="color:Red;">
+                    Password is required.
+                </span>
+            </div>
+
+            <button class="btn btn-primary btn-block" (click)="login()">
+                Log in
+            </button>
+
+            <div class="mt-2">
+                <a [routerLink]="['/register']" routerLinkActive="active">
+                    <small>¿Aún no tienes cuenta?</small>
+                </a>
+            </div>
+
+            <div class="divider my-3">
+                <hr>
+                <i class="fa fa-chevron-circle-down"></i>
+                <hr>
+            </div>
+            <button (click)="loginWithGoogle()" class="btn btn-light btn-block btn-outline-dark">
+                <i class="fab fa-google"></i>
+                Login with Google
+            </button>
+        </form>
+    </div>
+</div>
