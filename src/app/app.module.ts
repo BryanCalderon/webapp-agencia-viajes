@@ -5,17 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SearcherPlanComponent } from './searcher-plan/searcher-plan.component';
+import { SearcherPlanComponent } from './components/searcher-plan/searcher-plan.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
-import { PlanModule } from './plan/plan.module';
-import { LoginComponent } from './login/login.component';
-import { PasswordComponent } from './password/password.component';
-import { RegistroComponent } from './registro/registro.component';
+import { PlanModule } from './pages/planes/plan.module';
+import { LoginComponent } from './pages/login/login.component';
+import { PasswordComponent } from './pages/password/password.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuardActivateService } from './services/auth/auth-guard-activate.service';
 import { AuthGuardDeactivateService } from './services/auth/auth-guard-deactivate.service';
@@ -32,7 +32,7 @@ import { ClienteService } from './services/cliente/cliente.service';
     HomeComponent,
     LoginComponent,
     PasswordComponent,
-    RegistroComponent
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,

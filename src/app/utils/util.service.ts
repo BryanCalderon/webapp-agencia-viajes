@@ -14,4 +14,12 @@ export class UtilService {
             return date;
         }
     }
+
+    getMinValue(list, key) {
+        if (!list || list.length == 0) return null;
+        let minObject = list.reduce(function (prev, curr) {
+            return prev[key] < curr[key] ? prev : curr;
+        });
+        return minObject ? minObject[key] : null;
+    }
 }

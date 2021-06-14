@@ -1,0 +1,60 @@
+<div class="container mt-5" *ngIf="!plan">
+    {{ errorMessage }}
+</div>
+
+<div class="container mt-5" *ngIf="plan">
+    <div class="justify-content-center row">
+        <img [src]="plan.imagen" [alt]="plan.id" width="80%" height="50%">
+    </div>
+
+    <div class="my-5">
+        <div class="row">
+            <div class="col-7">
+                <h1>{{ plan.titulo }}</h1>
+                <ngb-rating [(rate)]="plan.rating" max="5" class="rating" readonly="true">
+                </ngb-rating>
+                <span> ({{ plan.totalRating }})</span>
+            </div>
+
+            <div class="col text-center">
+                <h2>Desde ${{ plan.precioMinimo | number }}</h2>
+                <span class="info_price">(Por persona). El precio varia dependiendo de la fecha.</span>
+            </div>
+        </div>
+
+        <div class="row pt-4">
+            <div class="col-7">
+                <p class="card-text">{{ plan.descripcion }}</p>
+            </div>
+
+            <div class="col d-flex flex-column align-items-center">
+                <div>
+                    <b>Incluye:</b>
+                    <ul>
+                        <li>{{ getTextDays(plan.totalDias) }}
+                            <span *ngIf="plan.totalNoches">
+                                {{ getTextNights(plan.totalNoches) }}
+                            </span>
+                        </li>
+                        <li>Transporte</li>
+                        <li>Guía turística</li>
+                        <li>Asistencia médica</li>
+                    </ul>
+                </div>
+
+                <div class="w-75">
+                    <a [routerLink]="['./cotizar']" class="btn btn-primary btn-block"> Comprar </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1 class="w-100">Reviews</h1>
+        <div class="row d-block">
+            <div *ngFor="let item of reviews">
+                <app-review [picture]="item.cliente.picture" [(comentario)]="item.comentario" [calificacion]="item.calificacion"></app-review>
+            </div>
+        </div>
+    </div>
+</div>

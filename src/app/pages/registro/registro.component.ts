@@ -4,9 +4,9 @@ import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Cliente, ClienteService } from '../services/cliente/cliente.service';
-import { AuthService } from '../services/auth/auth.service';
-import { UtilService } from '../utils/util.service';
+import { Cliente, ClienteService } from '../../services/cliente/cliente.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { UtilService } from '../../utils/util.service';
 
 @Component({
   selector: 'app-registro',

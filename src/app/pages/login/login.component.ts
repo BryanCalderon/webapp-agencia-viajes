@@ -5,8 +5,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { default as firebase } from 'firebase/app';
-import { ClienteService } from '../services/cliente/cliente.service';
-import { AuthService } from '../services/auth/auth.service';
+import { ClienteService } from '../../services/cliente/cliente.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
