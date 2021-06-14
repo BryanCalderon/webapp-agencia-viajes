@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Ciudad, CiudadService } from '../services/ciudad/ciudad.service';
+import { Ciudad, CiudadService } from '../../services/ciudad/ciudad.service';
 
 type Model = { origen: String, destino: string, select: Number };
 

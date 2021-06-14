@@ -21,7 +21,9 @@ export interface Plan {
     rating: number,
     fecha_ida: Date,
     fecha_regreso: Date,
-    precio: Number
+    precioMinimo: Number,
+    totalDias: any,
+    totalNoches: any
 };
 
 @Injectable({

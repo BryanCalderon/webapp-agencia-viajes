@@ -6,7 +6,6 @@ import { DetailPlanComponent } from './detail-plan/detail-plan.component';
 const routes: Routes = [
     {
         path: 'plan/:id',
-        // component: PlanComponent,
         children: [
             {
                 path: '',
@@ -15,7 +14,6 @@ const routes: Routes = [
             {
                 path: 'cotizar',
                 component: CotizadorComponent,
-                // loadChildren: () => CotizadorModule
             }
         ]
     }
