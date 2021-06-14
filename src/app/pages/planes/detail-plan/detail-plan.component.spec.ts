@@ -18,7 +18,6 @@ describe('DetailPlanComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DetailPlanComponent);
-    // activatedRoute.setParamMap({ id: 99999 });
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
