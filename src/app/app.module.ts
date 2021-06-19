@@ -19,7 +19,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuardActivateService } from './services/auth/auth-guard-activate.service';
 import { AuthGuardDeactivateService } from './services/auth/auth-guard-deactivate.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '@env/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';

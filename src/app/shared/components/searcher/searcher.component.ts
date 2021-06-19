@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 
@@ -8,7 +8,7 @@ import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators'
   templateUrl: './searcher.component.html',
   styleUrls: ['./searcher.component.css']
 })
-export class SearcherComponent implements OnInit {
+export class SearcherComponent {
   @Input() list: any[];
   @Input() fieldSearch: string;
   @Input() label: String;
@@ -17,20 +17,14 @@ export class SearcherComponent implements OnInit {
   @Output() onChangeEvent = new EventEmitter<string>();
   formatterSearch = (item: any) => item[this.fieldSearch];
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  search = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      filter(term => term.length >= 2),
-      map(term => this.list.filter(item => new RegExp(term, 'mi')
-        .test(item[this.fieldSearch]))
-        .slice(0, 10))
-    )
+  search = (text$: Observable<string>) => text$.pipe(
+    debounceTime(200),
+    distinctUntilChanged(),
+    filter(term => term.length >= 2),
+    map(term => this.list.filter(item => new RegExp(term, 'mi')
+      .test(item[this.fieldSearch]))
+      .slice(0, 10))
+  )
 
   selectedItem(item) {
     this.model[this.key] = item.item;
