@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Ciudad } from 'src/app/services/ciudad/ciudad.service';
-import { Departamento, DepartamentoService } from 'src/app/services/departamento/departamento.service';
+import { Ciudad } from '../../../../../services/ciudad/ciudad.service';
+import { Departamento, DepartamentoService } from '../../../../../services/departamento/departamento.service';
 
 @Component({
   selector: 'app-step1',

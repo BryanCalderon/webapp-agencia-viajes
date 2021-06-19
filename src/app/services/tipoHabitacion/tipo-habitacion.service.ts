@@ -1,18 +1,19 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { AbstractService } from '../abstract/abstractService';
+
+const routes = {
+  endpoint: () => `hotel-tipo-habitacion/`,
+  byId: (id: Number) => routes.endpoint() + `${id}/`,
+  byHotel: (id: Number) => routes.endpoint() + `getByHotel/${id}/`,
+};
 
 @Injectable({
   providedIn: 'root'
 })
-export class TipoHabitacionService {
-
-  endpoint = "hotel-tipo-habitacion";
-
-  constructor(private httpClient: HttpClient) { }
+export class TipoHabitacionService extends AbstractService<any>{
 
   getByhotel(hotelId: number): Observable<any> {
-    return this.httpClient.get(environment.domain + this.endpoint + `/getByHotel/${hotelId}/`);
+    return super.get(routes.byHotel(hotelId));
   }
 }

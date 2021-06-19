@@ -1,8 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { AbstractService } from '../abstract/abstractService';
 
+const routes = {
+  endpoint: () => `hotel/`,
+  byCity: (id: Number | String) => routes.endpoint() + `byCity/${id}/`,
+};
 
 export interface Hotel {
   nombre: String,
@@ -18,11 +21,9 @@ export interface Hotel {
 @Injectable({
   providedIn: 'root'
 })
-export class HotelService {
-  endpoint = "hotel";
-  constructor(private http: HttpClient) { }
+export class HotelService extends AbstractService<Hotel> {
 
   getByCity(cityId: String): Observable<any> {
-    return this.http.get(environment.domain + this.endpoint + `/byCity/${cityId}/`);
+    return super.get(routes.byCity(cityId));
   }
 }

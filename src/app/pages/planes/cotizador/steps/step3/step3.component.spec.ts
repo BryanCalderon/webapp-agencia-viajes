@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Step3Component } from './step3.component';
@@ -8,7 +9,8 @@ describe('Step3Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Step3Component ]
+      declarations: [ Step3Component ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });
@@ -16,6 +18,7 @@ describe('Step3Component', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(Step3Component);
     component = fixture.componentInstance;
+    component.model = {};
     fixture.detectChanges();
   });
 

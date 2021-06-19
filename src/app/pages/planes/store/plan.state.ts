@@ -1,4 +1,4 @@
-import { Plan } from '../service/plan.service';
+import { Plan } from '../../../entities/Plan';
 
 export interface PlanState {
     plan: Plan;

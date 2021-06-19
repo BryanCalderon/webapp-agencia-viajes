@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AbstractService } from '../abstract/abstractService';
 
 
 export interface Ciudad {
@@ -11,11 +11,9 @@ export interface Ciudad {
 @Injectable({
   providedIn: 'root'
 })
-export class CiudadService {
-
-  constructor(private http: HttpClient) { }
+export class CiudadService extends AbstractService<Ciudad> {
 
   public get(): Observable<any> {
-    return this.http.get("./assets/cities.json");
+    return super.getPath("./assets/cities.json");
   }
 }

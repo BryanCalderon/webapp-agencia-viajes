@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { PlanService, Plan } from '../service/plan.service';
+import { PlanService } from '../../../services/plan/plan.service';
+import { Plan } from '../../../entities/Plan';
 import * as PlanActions from './plan.action';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 

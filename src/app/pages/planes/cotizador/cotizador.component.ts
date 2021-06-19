@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { Compra, ComprasService } from 'src/app/services/compras/compras.service';
-import { ToastService } from 'src/app/services/toast/toast.service';
-import { UtilService } from 'src/app/utils/util.service';
-import { PlanService } from '../service/plan.service';
+import { AuthService } from '../../../services/auth/auth.service';
+import { Compra, ComprasService } from '../../../services/compras/compras.service';
+import { ToastService } from '../../../services/toast/toast.service';
+import { UtilService } from '../../../utils/util.service';
+import { PlanService } from '../../../services/plan/plan.service';
 
 // interface Model { plan: Plan, origen: String, destino: string, select: Number, fromDate: NgbDate, toDate: NgbDate };
 
@@ -116,7 +116,7 @@ export class CotizadorComponent implements OnInit {
       tipo_habitacion: this.model['tipoHabitacion'] ? this.model['tipoHabitacion'] : null,
     };
 
-    this.compraService.persist(compra).subscribe(data => {
+    this.compraService.create(compra).subscribe(data => {
       this.toastService.show("Se ha realizado la compra satisfactoriamente", { classname: 'bg-success text-light', delay: 5000 });
       this.router.navigate(['/home']);
     });

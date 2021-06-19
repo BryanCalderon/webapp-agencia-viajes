@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UtilService } from 'src/app/utils/util.service';
+import { UtilService } from '../../../../../utils/util.service';
 
 @Component({
   selector: 'app-step4',

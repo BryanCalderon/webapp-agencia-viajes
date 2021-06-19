@@ -1,8 +1,13 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { AbstractService } from '../abstract/abstractService';
 
+
+const routes = {
+  clientes: () => `clientes/`,
+  cliente: (id: Number) => routes.clientes() + `${id}/`,
+  byUid: (id: Number | String) => routes.clientes() + `byUid/${id}/`,
+};
 export interface Cliente {
   nombres: String,
   apellidos: String,
@@ -16,21 +21,13 @@ export interface Cliente {
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteService {
-
-  constructor(private http: HttpClient) { }
+export class ClienteService extends AbstractService<Cliente> {
 
   create(cliente: Cliente): Observable<any> {
-    return this.http.post(environment.domain + 'clientes/',
-      cliente,
-      {
-        headers: new HttpHeaders()
-          .set('Content-Type', 'application/json')
-      }
-    );
+    return super.persist(routes.clientes(), cliente);
   }
 
   getByUID(uid: String): Observable<any> {
-    return this.http.get(environment.domain + `clientes/byUid/${uid}/`);
+    return super.get(routes.byUid(uid));
   }
 }

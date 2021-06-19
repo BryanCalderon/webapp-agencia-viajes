@@ -50,16 +50,7 @@ export class RegistroComponent implements OnInit {
     if (this.loginForm.value.password == this.loginForm.value.confirmPassword) {
       this.afAuth.createUserWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password).then(response => {
         response.user.updateProfile({ displayName: [this.loginForm.value.nombres, this.loginForm.value.apellidos].join(" ") }).then(() => {
-          let cliente: Cliente = {
-            nombres: this.loginForm.value.nombres,
-            apellidos: this.loginForm.value.apellidos,
-            identificacion: this.loginForm.value.identificacion,
-            telefono: this.loginForm.value.telefono,
-            fecha_nacimiento: this.utilService.convertToDate(this.loginForm.value.fecha_nacimiento),
-            email: this.loginForm.value.email,
-            uid: response.user.uid
-          };
-
+          let cliente: Cliente = this.buildClient(response);
           this.clienteService.create(cliente).subscribe(client => {
             this.authService.saveClientIntoLS(client);
             this.router.navigate(['/home']);
@@ -70,6 +61,18 @@ export class RegistroComponent implements OnInit {
       this.loginForm.patchValue({ password: '', confirmPassword: '' });
       this._success.next("Las contraseñas no coinciden");
     }
+  }
+
+  buildClient(response) {
+    return {
+      nombres: this.loginForm.value.nombres,
+      apellidos: this.loginForm.value.apellidos,
+      identificacion: this.loginForm.value.identificacion,
+      telefono: this.loginForm.value.telefono,
+      fecha_nacimiento: this.utilService.convertToDate(this.loginForm.value.fecha_nacimiento),
+      email: this.loginForm.value.email,
+      uid: response.user.uid
+    };
   }
 
 }
