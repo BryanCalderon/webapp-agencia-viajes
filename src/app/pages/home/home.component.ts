@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Plan, PlanService } from '../planes/service/plan.service';
-import { Promocion } from '../../services/promocion/promocion.service';
+import { Plan } from '../../entities/Plan';
+import { PlanService } from '../../services/plan/plan.service';
 
 interface Fecha {
   id: Number,
@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
 
   innerWidth: number;
   innerHeight: number;
-  promotions: Promocion[];
   planes: Plan[];
 
   constructor(private planService: PlanService) { }

@@ -1,7 +1,7 @@
 <div class="row">
     <div class="form-group hidden">
         <div class="input-group">
-            <input name="datepicker" class="form-control hidden" ngbDatepicker #datepicker="ngbDatepicker"
+            <input name="datepicker" class="form-control hidden" ngbDatepicker #datepicker
                 [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
                 outsideDays="hidden" [startDate]="model[fromDate]!">
             <ng-template #t let-date let-focused="focused">

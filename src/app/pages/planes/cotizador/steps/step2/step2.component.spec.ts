@@ -1,3 +1,5 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Step2Component } from './step2.component';
@@ -8,14 +10,19 @@ describe('Step2Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Step2Component ]
+      imports: [HttpClientTestingModule],
+      declarations: [Step2Component],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(Step2Component);
     component = fixture.componentInstance;
+    component.model = {
+      ciudad: {}
+    }
     fixture.detectChanges();
   });
 

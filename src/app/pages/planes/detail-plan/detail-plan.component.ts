@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Review, ReviewService } from 'src/app/services/review/review.service';
-import { Plan, PlanService } from '../service/plan.service';
+import { Review, ReviewService } from '../../../services/review/review.service';
+import { PlanService } from '../../../services/plan/plan.service';
+import { Plan } from '../../../entities/Plan';
 
 @Component({
   selector: 'app-detail-plan',

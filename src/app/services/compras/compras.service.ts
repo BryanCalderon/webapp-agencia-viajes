@@ -1,7 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { AbstractService } from '../abstract/abstractService';
 
+const routes = {
+  compras: () => `compra/`,
+  compra: (id: Number) => routes.compras() + `${id}/`,
+};
 export interface Compra {
   fecha_ida: any,
   fecha_regreso: any,
@@ -18,14 +21,12 @@ export interface Compra {
 @Injectable({
   providedIn: 'root'
 })
-export class ComprasService {
+export class ComprasService extends AbstractService<Compra>{
 
   endpoint = "compra/"
 
-  constructor(private httpClient: HttpClient) { }
-
-  persist(compra: Compra) {
-    return this.httpClient.post(environment.domain + this.endpoint, compra);
+  create(compra: Compra) {
+    return super.persist(routes.compras(), compra);
   }
 
 }

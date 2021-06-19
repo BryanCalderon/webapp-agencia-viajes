@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { HotelService } from 'src/app/services/hotel/hotel.service';
-import { ServiciosHotelService } from 'src/app/services/serviciosHotel/servicios-hotel.service';
-import { TipoHabitacionService } from 'src/app/services/tipoHabitacion/tipo-habitacion.service';
+import { HotelService } from '../../../../../services/hotel/hotel.service';
+import { ServiciosHotelService } from '../../../../../services/serviciosHotel/servicios-hotel.service';
+import { TipoHabitacionService } from '../../../../../services/tipoHabitacion/tipo-habitacion.service';
 
 @Component({
   selector: 'app-step2',

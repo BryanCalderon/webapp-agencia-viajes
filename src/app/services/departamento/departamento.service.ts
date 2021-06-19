@@ -1,7 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { AbstractService } from '../abstract/abstractService';
+
+const routes = {
+  endpoint: () => `departamentos/`,
+  byId: (id: Number) => routes.endpoint() + `${id}/`,
+  cities: (id: Number) => routes.endpoint() + `${id}/cities/`,
+};
 
 export interface Departamento {
   id: String,
@@ -12,16 +17,13 @@ export interface Departamento {
 @Injectable({
   providedIn: 'root'
 })
-export class DepartamentoService {
-
-  endpoint = "departamentos";
-  constructor(private http: HttpClient) { }
+export class DepartamentoService extends AbstractService<Departamento>{
 
   get(): Observable<any> {
-    return this.http.get(environment.domain + this.endpoint + `/`);
+    return super.get(routes.endpoint());
   }
 
   getCities(id: Number): Observable<any> {
-    return this.http.get(environment.domain + this.endpoint + `/${id}/cities/`);
+    return super.get(routes.cities(id));
   }
 }

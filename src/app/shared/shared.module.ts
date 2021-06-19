@@ -7,9 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { ToastComponent } from './toast/toast.component';
-
-
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [

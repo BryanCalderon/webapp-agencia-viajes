@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test --watch=false --browsers=ChromeHeadlessCustom",
+    "test": "jest",
+    "test:coverage": "jest -coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -35,20 +36,35 @@
     "@angular-devkit/build-angular": "^0.1102.14",
     "@angular/cli": "^11.2.14",
     "@angular/compiler-cli": "^11.2.14",
-    "@types/jasmine": "~3.6.0",
-    "@types/jasminewd2": "^2.0.9",
+    "@types/jest": "^26.0.23",
     "@types/node": "^12.20.15",
     "codelyzer": "^6.0.0",
-    "jasmine-core": "~3.6.0",
-    "jasmine-spec-reporter": "~5.0.0",
-    "karma": "^6.3.4",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~3.0.2",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
+    "jest": "^27.0.4",
+    "jest-preset-angular": "^9.0.4",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "^4.0.7"
+  },
+  "jest": {
+    "verbose": true,
+    "preset": "jest-preset-angular",
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupJest.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/dist/",
+      "<rootDir>/src/test.ts"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/tsconfig.spec.json",
+        "stringifyContentPathRegex": "\\.html$"
+      }
+    }
   }
 }

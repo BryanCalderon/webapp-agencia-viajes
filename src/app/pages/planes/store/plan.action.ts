@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Plan } from '../service/plan.service';
+import { Plan } from '../../../entities/Plan';
 
 export const CREATE_PLAN = '[CREATE] Plan';
 export const CREATE_PLAN_SUCCESS = '[CREATE] Plan Success';

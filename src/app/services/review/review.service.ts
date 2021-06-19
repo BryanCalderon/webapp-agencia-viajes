@@ -1,9 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { AbstractService } from '../abstract/abstractService';
 
-
+const routes = {
+  endpoint: () => `reviews/`,
+  byId: (id: Number) => routes.endpoint() + `${id}/`,
+  byPlan: (id: Number) => routes.endpoint() + `plan/${id}/`,
+};
 
 export interface Review {
   comentario: String,
@@ -17,12 +20,9 @@ export interface Review {
 @Injectable({
   providedIn: 'root'
 })
-export class ReviewService {
-
-  endpoint = "reviews";
-  constructor(private http: HttpClient) { }
+export class ReviewService extends AbstractService<Review> {
 
   getByPlan(planId: Number): Observable<any> {
-    return this.http.get(environment.domain + this.endpoint + `/plan/${planId}/`);
+    return super.get(routes.byPlan(planId));
   }
 }

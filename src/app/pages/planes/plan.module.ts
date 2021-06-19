@@ -7,7 +7,7 @@ import { PlanComponent } from './plan/plan.component';
 import { ReviewComponent } from '../../components/review/review.component';
 import { reducer } from './store/plan.reducer';
 import { PlanEffect } from './store/plan.effect';
-import { PlanService } from './service/plan.service';
+import { PlanService } from '../../services/plan/plan.service';
 import { PlanRoutingModule } from './plan-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

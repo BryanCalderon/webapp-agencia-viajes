@@ -1,13 +1,14 @@
 <div class="container" style="border: 1px solid #ccc; margin-top: 50px;">
     <div class="row justify-content-between mt-2">
-        <h2 class="px-4">Buscar plan</h2>
+        <h2 class="px-4">Buscar plan {{model.select}}</h2>
 
-        <div class="align-items-center btn-group btn-group-toggle col-lg-3 pr-lg-4 pl-lg-0 pb-2 pb-lg-0 px-4 px-lg-0"
-            ngbRadioGroup data-toggle="buttons" [(ngModel)]="model.select">
-            <label class="btn btn-options col-sm-6 col-lg" ngbButtonLabel>
+        <div ngbRadioGroup [(ngModel)]="model.select" name="options" ngDefaultControl
+            class="align-items-center btn-group btn-group-toggle col-lg-3 pr-lg-4 pl-lg-0 pb-2 pb-lg-0 px-4 px-lg-0">
+
+            <label ngbButtonLabel class="btn btn-options col-sm-6 col-lg">
                 <input ngbButton type="radio" [value]="1">Ida y vuelta
             </label>
-            <label class="btn btn-options col-sm-6 col-lg" ngbButtonLabel>
+            <label ngbButtonLabel class="btn btn-options col-sm-6 col-lg">
                 <input ngbButton type="radio" [value]="2">Solo ida
             </label>
         </div>
@@ -21,7 +22,8 @@
             </div>
             <div class="col-6 col-sm-6">
                 <app-searcher label="Ciudad destino" [list]="ciudades" [(model)]="model" fieldSearch="name"
-                    key="ciudad"> </app-searcher>
+                    key="ciudad">
+                </app-searcher>
             </div>
         </div>
 
