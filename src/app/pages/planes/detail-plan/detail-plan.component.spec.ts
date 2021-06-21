@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PlanService } from '../../../services/plan/plan.service';
 import { NgbRating } from '@ng-bootstrap/ng-bootstrap';
 import { DetailPlanComponent } from './detail-plan.component';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { ReviewService } from '../../../services/review/review.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -67,7 +67,7 @@ describe('DetailPlanComponent', () => {
   }))
 
   it('Should call getPlan and get response as error', fakeAsync(() => {
-    jest.spyOn(planService, "getById").mockImplementation(() => of(new HttpErrorResponse({ status: 404, error: { message: "mensaje de error" } })));
+    jest.spyOn(planService, "getById").mockImplementation(() => throwError(new HttpErrorResponse({ status: 404, error: { message: "mensaje de error" } })));
     component.getPlan(1);
     expect(component.errorMessage).toEqual("mensaje de error");
   }))
