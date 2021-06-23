@@ -7,13 +7,14 @@ import { Plan } from '../../../entities/Plan';
 @Component({
   selector: 'app-detail-plan',
   templateUrl: './detail-plan.component.html',
-  styleUrls: ['./detail-plan.component.css']
+  styleUrls: ['./detail-plan.component.css'],
+  host: { 'class': 'h-100' }
 })
 export class DetailPlanComponent implements OnInit {
 
   plan: Plan;
   reviews: Review[];
-  errorMessage: String;
+  error: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,13 +32,12 @@ export class DetailPlanComponent implements OnInit {
   }
 
   getPlan(id: Number) {
-    this.planService.getById(id).subscribe(data => {
-      this.plan = data;
-      this.plan.totalNoches = this.getTotalNightsByDays(this.plan.totalDias);
-    },
-      error => {
-        this.errorMessage = error.error.message;
-      }
+    this.planService.getById(id).subscribe(
+      data => {
+        this.plan = data;
+        this.plan.totalNoches = this.getTotalNightsByDays(this.plan.totalDias);
+      },
+      error => this.error = error
     )
   }
 

@@ -13,6 +13,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailPlanComponent } from './detail-plan/detail-plan.component';
 import { CotizadorModule } from './cotizador/cotizador.module';
+import { ErrorComponent } from '../../components/error/error.component';
 
 @NgModule({
     imports: [
@@ -27,8 +28,8 @@ import { CotizadorModule } from './cotizador/cotizador.module';
         CotizadorModule
     ],
     providers: [PlanService],
-    declarations: [PlanComponent, DetailPlanComponent, ReviewComponent],
-    exports: [PlanComponent, ReviewComponent]
+    declarations: [PlanComponent, DetailPlanComponent, ReviewComponent, ErrorComponent],
+    exports: [PlanComponent, ReviewComponent, ErrorComponent]
 })
 
 export class PlanModule { }

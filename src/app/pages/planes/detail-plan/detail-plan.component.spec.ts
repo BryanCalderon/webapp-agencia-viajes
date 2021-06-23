@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Component, Input } from '@angular/core';
+import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PlanService } from '../../../services/plan/plan.service';
@@ -29,7 +29,8 @@ describe('DetailPlanComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [DetailPlanComponent, NgbRating, ReviewComponent],
       imports: [RouterTestingModule, HttpClientTestingModule],
-      providers: [PlanService]
+      providers: [PlanService],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   });
 
@@ -69,7 +70,8 @@ describe('DetailPlanComponent', () => {
   it('Should call getPlan and get response as error', fakeAsync(() => {
     jest.spyOn(planService, "getById").mockImplementation(() => throwError(new HttpErrorResponse({ status: 404, error: { message: "mensaje de error" } })));
     component.getPlan(1);
-    expect(component.errorMessage).toEqual("mensaje de error");
+    expect(component.error.status).toEqual(404);
+    expect(component.error.error.message).toEqual("mensaje de error");
   }))
 
   it('Should call getReviews and get response as empty array', fakeAsync(() => {
