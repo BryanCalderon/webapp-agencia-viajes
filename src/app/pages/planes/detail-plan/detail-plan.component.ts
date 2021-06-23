@@ -11,18 +11,22 @@ import { Plan } from '../../../entities/Plan';
 })
 export class DetailPlanComponent implements OnInit {
 
-  id: Number;
   plan: Plan;
   reviews: Review[];
   errorMessage: String;
 
-  constructor(private route: ActivatedRoute, private planService: PlanService, private reviewService: ReviewService) {
+  constructor(
+    private route: ActivatedRoute,
+    private planService: PlanService,
+    private reviewService: ReviewService
+  ) {
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(p => {
-      this.id = p['params']['id'];
-      this.getPlan(this.id);
+      const id = p['params']['id'];
+      this.getPlan(id);
+      this.getReviews(id);
     })
   }
 
@@ -30,7 +34,6 @@ export class DetailPlanComponent implements OnInit {
     this.planService.getById(id).subscribe(data => {
       this.plan = data;
       this.plan.totalNoches = this.getTotalNightsByDays(this.plan.totalDias);
-      this.getReviews(this.id);
     },
       error => {
         this.errorMessage = error.error.message;
@@ -38,24 +41,24 @@ export class DetailPlanComponent implements OnInit {
     )
   }
 
-  getTotalNightsByDays(totalDays) {
-    if (!totalDays || totalDays == 0) {
-      return null;
-    }
-    return totalDays - 1;
-  }
-
-  getTextDays(days) {
-    return days + " " + (days > 1 ? "días" : "día");
-  }
-
-  getTextNights(days) {
-    return days + " " + (days > 1 ? "noches" : "noche");
-  }
-
-  getReviews(idPlan) {
+  getReviews(idPlan: Number) {
     this.reviewService.getByPlan(idPlan).subscribe(data => {
       this.reviews = data;
     })
+  }
+
+  getTotalNightsByDays(totalDays: number): number {
+    if (!totalDays || totalDays == 0) return null;
+    return totalDays - 1;
+  }
+
+  getTextDays(days: number): String {
+    if (!days || days == 0) return null;
+    return days + " " + (days > 1 ? "días" : "día");
+  }
+
+  getTextNights(days: number): String {
+    if (!days || days == 0) return null;
+    return days + " " + (days > 1 ? "noches" : "noche");
   }
 }
