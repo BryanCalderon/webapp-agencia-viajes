@@ -1,5 +1,5 @@
-<div class="container mt-5" *ngIf="!plan">
-    {{ errorMessage }}
+<div class="h-100" *ngIf="!plan && error">
+    <app-error [message]="error.error.message" [status]="error.status"></app-error>
 </div>
 
 <div class="container mt-5" *ngIf="plan">
@@ -53,7 +53,9 @@
         <h1 class="w-100">Reviews</h1>
         <div class="row d-block">
             <div *ngFor="let item of reviews">
-                <app-review [picture]="item.cliente.picture" [(comentario)]="item.comentario" [calificacion]="item.calificacion"></app-review>
+                <app-review [picture]="item.cliente.picture" [(comentario)]="item.comentario"
+                    [calificacion]="item.calificacion">
+                </app-review>
             </div>
         </div>
     </div>
