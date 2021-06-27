@@ -1,0 +1,54 @@
+<div class="container">
+    <h1 class="py-5">Planes</h1>
+
+    <div class="row">
+        <div class="col-12 mb-5">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Buscar por nombre" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <!-- TODO: Add filters. Example filter body: -->
+                <div class="card-body">
+                    <app-searcher label="Ciudad destino" [list]="ciudades" [(model)]="model" fieldSearch="name"
+                        key="ciudad">
+                    </app-searcher>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-9">
+            <div class="card mb-3" *ngFor="let plan of planes">
+                <div class="card-body d-inline-flex">
+                    <div class="pr-5">
+                        <img width="300px" [src]="plan.imagen">
+                    </div>
+                    <div>
+                        <h2>{{ plan.titulo }}</h2>
+                        <ngb-rating max="5" [rate]="plan.rating" class="rating" readonly="true"></ngb-rating>
+                        <p class="pt-2 plan-descripcion">
+                            {{ plan.descripcion }}
+                        </p>
+                        <div class="pt-2 justify-content-between d-flex">
+                            <span>Desde ${{ plan.precioMinimo | number }}</span>
+                            <a [routerLink]="['/plan', plan.id]" class="btn btn-primary">Ver plan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ngb-pagination class="d-flex justify-content-center" 
+        aria-label="Default pagination"
+        [collectionSize]="pagination.total"
+        [pageSize]="pagination.data.limit" 
+        [(page)]="pagination.page" 
+        (pageChange)="onChangePage()">
+    </ngb-pagination>
+</div>

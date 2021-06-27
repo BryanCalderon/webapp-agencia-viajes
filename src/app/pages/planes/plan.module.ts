@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailPlanComponent } from './detail-plan/detail-plan.component';
 import { CotizadorModule } from './cotizador/cotizador.module';
 import { ErrorComponent } from '../../components/error/error.component';
+import { PlanesComponent } from './planes.component';
 
 @NgModule({
     imports: [
@@ -28,7 +29,7 @@ import { ErrorComponent } from '../../components/error/error.component';
         CotizadorModule
     ],
     providers: [PlanService],
-    declarations: [PlanComponent, DetailPlanComponent, ReviewComponent, ErrorComponent],
+    declarations: [PlanComponent, DetailPlanComponent, ReviewComponent, ErrorComponent, PlanesComponent],
     exports: [PlanComponent, ReviewComponent, ErrorComponent]
 })
 
