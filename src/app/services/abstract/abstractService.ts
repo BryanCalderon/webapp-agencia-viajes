@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { Observable, of } from "rxjs";
@@ -10,8 +10,9 @@ export class AbstractService<T> {
 
     constructor(private http: HttpClient) { }
 
-    get(path: string): Observable<T> {
-        return this.http.get<T>(environment.domain + path);
+    get(path: string, params?: {}): Observable<T> {
+        const httpParams = new HttpParams({ fromObject: params });
+        return this.http.get<T>(environment.domain + path, { params: httpParams });
     }
 
     getPath(path: string): Observable<T> {

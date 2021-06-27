@@ -28,8 +28,12 @@ export class HomeComponent implements OnInit {
   }
 
   getPlanes() {
-    this.planService.get().subscribe((data: []) => {
-      this.planes = data;
+    this.planService.get({}).subscribe(data => {
+      this.planes = data.results;
     });
+  }
+
+  capitalize(text) {
+    return text.substr(0, 1).toUpperCase() + text.substr(1).toLowerCase()
   }
 }

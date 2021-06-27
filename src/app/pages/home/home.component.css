@@ -1,0 +1,31 @@
+.ellipse {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+}
+
+.d-contents {
+    display: contents !important;
+}
+
+.relevant-item {
+    border-bottom: 1px solid #ccc;
+}
+
+.border {
+    border: 1px solid #ccc;
+}
+
+@media (max-width : 600px) {
+    .relevant-item {
+        padding: 0;
+        border: 0;
+    }
+
+    .relevant-item .card-body {
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
+    }
+}

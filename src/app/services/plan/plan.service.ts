@@ -22,8 +22,8 @@ export class PlanService extends AbstractService<Plan> {
         return super.persist(routes.endpoint(), plan);
     }
 
-    get(): Observable<any> {
-        return super.get(routes.endpoint());
+    get(pagination?): Observable<any> {
+        return super.get(routes.endpoint(), pagination);
     }
 
     getById(id: Number): any {
