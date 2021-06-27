@@ -3,6 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { from } from 'rxjs';
 
 import { PlanesComponent } from './planes.component';
 
@@ -16,7 +17,7 @@ describe('PlanesComponent', () => {
       declarations: [PlanesComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { params: { offset: "5", limit: "5" } } } }
+        { provide: ActivatedRoute, useValue: { queryParams: from([{ offset: "5", limit: "5" }]), } }
       ]
     })
       .compileComponents();
@@ -35,4 +36,18 @@ describe('PlanesComponent', () => {
   it('Validate query params pagination', () => {
     expect(component.pagination.data).toEqual({ offset: 5, limit: 5 });
   })
+
+  it('onChangePage', () => {
+    component.getPlanes = jest.fn();
+    component.pagination.page = 1;
+    component.onChangePage();
+    expect(component.pagination.data.offset).toEqual(0);
+    expect(component.getPlanes).toBeCalled();
+
+    component.pagination.page = 3;
+    component.onChangePage();
+    expect(component.pagination.data.offset).toEqual(10);
+  })
+
+
 });
