@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Plan } from '@app/entities/Plan';
-import { Ciudad, CiudadService } from '@app/services/ciudad/ciudad.service';
-import { PlanService } from '@app/services/plan/plan.service';
+import { Plan } from '../../entities/Plan';
+import { Ciudad, CiudadService } from '../../services/ciudad/ciudad.service';
+import { PlanService } from '../../services/plan/plan.service';
 
 @Component({
   selector: 'app-planes',
